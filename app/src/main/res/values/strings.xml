@@ -6,10 +6,6 @@
     <!-- Nav Drawer Menu Items -->
     <string name="movie_search">Movie</string>
     <string name="tv_search">TV</string>
-    <string name="simpsons">The Simpsons</string>
-    <string name="futurama">Futurama</string>
-    <string name="cartoon_wars">Cartoon Wars</string>
-    <string name="simpsorama">Simpsorama</string>
 
     <string name="action_settings">Settings</string>
     <string name="search">Search</string>
