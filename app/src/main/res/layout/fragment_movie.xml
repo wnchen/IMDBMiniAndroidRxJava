@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/movie_search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:animateLayoutChanges="true"
+            android:gravity="center"
+            android:text="@string/movie_search_title"
+            android:textSize="@dimen/search"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:id="@+id/movie_search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/cell_seperator_color" />
+
+            <RelativeLayout
+                android:id="@+id/title_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/title_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/search_name"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/search_title" />
+
+                <EditText
+                    android:id="@+id/title_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="140dp"
+                    android:paddingRight="40dp"
+                    android:background="@android:color/transparent"
+                    android:singleLine="true"
+                    android:hint="@string/title_hint_text"
+                    android:textSize="@dimen/search_title" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="@color/cell_seperator_color" />
+
+            <RelativeLayout
+                android:id="@+id/year_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/year_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:text="@string/year"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/search_year" />
+
+                <EditText
+                    android:id="@+id/year_edit_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="140dp"
+                    android:paddingRight="40dp"
+                    android:background="@android:color/transparent"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:hint="@string/year_hint_text"
+                    android:textSize="@dimen/search_year" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/cell_seperator_color" />
+
+
+            <RelativeLayout
+                android:id="@+id/search_button_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/search_button"
+                    style="@style/FocusButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/button_round_green_selector"
+                    android:text="@string/search" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

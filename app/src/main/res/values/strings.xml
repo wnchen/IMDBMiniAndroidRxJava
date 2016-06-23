@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">IMDB Media</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string name="movie_search">Movie</string>
+    <string name="tv_search">TV</string>
+    <string name="simpsons">The Simpsons</string>
+    <string name="futurama">Futurama</string>
+    <string name="cartoon_wars">Cartoon Wars</string>
+    <string name="simpsorama">Simpsorama</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="movies">Title</string>
+    <string name="year">Year</string>
+    <string name="people">Person</string>
+    <string name="viewed">Viewed</string>
+    <string name="search_name">Name</string>
+
+    <string name="movie_search_title">Movie Search</string>
+    <string name="detail">Details</string>
+    <string name="title_hint_text">Enter an name</string>
+    <string name="year_hint_text">...and release year</string>
+    <string name="no_movies_found">No Movies Found...</string>
+
+    <!-- Movie detail page -->
+    <string name="title_detail">Title: </string>
+    <string name="year_detail">Released: </string>
+    <string name="duration_detail">Runtime: </string>
+    <string name="genre_detail">"Genre: </string>
+    <string name="director_detail">Director: </string>
+    <string name="writer_detail">Writer: </string>
+    <string name="actors_detail">Actors: </string>
+    <string name="plot_detail">Plot: </string>
+    <string name="language_detail">Language: </string>
+    <string name="country_detail">Country: </string>
+    <string name="award_detail">Awards: </string>
+    <string name="rating_detail">imdbRating: </string>
+    <string name="type_detail">Type: </string>
+
+    <!-- toast msg -->
+    <string name="title_empty_msg">Name can not be empty</string>
+    <string name="no_internet_msg">No Internet Connection</string>
+    <string name="wait_dialog_msg">Please wait...</string>
+    <string name="retrieve_dialog_msg">Retrieving data...</string>
+    <string name="load_dialog_msg">Loading...</string>
+
+</resources>
