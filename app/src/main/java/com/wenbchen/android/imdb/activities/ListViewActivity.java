@@ -41,15 +41,10 @@ public class ListViewActivity extends AppCompatActivity {
 	private RecyclerView.Adapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
 	private TextView mNoMoviesTextView;
-	//private CustomListAdapter adapter;
 	private WatchedMoviesDataSource dataSource;
 
 	public List<Media> getMovieList() {
 		return movieList;
-	}
-
-	public void setMovieList(List<Media> movieList) {
-		this.movieList = movieList;
 	}
 
 	@Override

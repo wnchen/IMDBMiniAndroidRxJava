@@ -3,12 +3,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_south_park"
-            android:icon="@drawable/ic_south_park"
+            android:icon="@drawable/ic_movie"
             android:title="@string/movie_search"
             android:checked="true"/>
         <item
             android:id="@+id/nav_family_guy"
-            android:icon="@drawable/ic_family_guy"
+            android:icon="@drawable/ic_tv"
             android:title="@string/tv_search" />
     </group>
 </menu>

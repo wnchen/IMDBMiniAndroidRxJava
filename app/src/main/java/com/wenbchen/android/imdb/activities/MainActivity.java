@@ -14,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.wenbchen.android.imdb.R;
-import com.wenbchen.android.imdb.fragments.FamilyGuyFragment;
+import com.wenbchen.android.imdb.fragments.TVFragment;
 import com.wenbchen.android.imdb.fragments.MovieFragment;
 
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = MovieFragment.class;
                 break;
             case R.id.nav_family_guy:
-                fragmentClass = FamilyGuyFragment.class;
+                fragmentClass = TVFragment.class;
                 break;
             default:
                 fragmentClass = MovieFragment.class;

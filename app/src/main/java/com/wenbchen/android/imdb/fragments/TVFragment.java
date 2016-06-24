@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 
 import com.wenbchen.android.imdb.R;
 
-public class FamilyGuyFragment extends Fragment {
+public class TVFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_family_guy, container, false);
+        return inflater.inflate(R.layout.fragment_tv, container, false);
     }
 }
