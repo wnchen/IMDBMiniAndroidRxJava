@@ -10,11 +10,14 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ public class ListViewActivity extends AppCompatActivity {
 	private static final String TAG = "ListViewActivity";
 
 	// Movies json url
+	private Toolbar toolbar;
 	private StringBuffer mUrlStringBuffer;
 	private ProgressDialog pDialog;
 	private List<Media> movieList = new ArrayList<Media>();
@@ -50,12 +54,19 @@ public class ListViewActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_view);
+
+		//set a Toolbar to replace the ActionBar
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		setTitle(getResources().getString(R.string.movie_list));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle extras = getIntent().getExtras();
 		String title = extras.getString(UtilsString.TITLE_KEY);
 		String year = extras.getString(UtilsString.YEAR_KEY);
 
-		setContentView(R.layout.list_view);
+
 
 		dataSource = new WatchedMoviesDataSource(this);
 		dataSource.open();
@@ -146,6 +157,17 @@ public class ListViewActivity extends AppCompatActivity {
 			pDialog.dismiss();
 			pDialog = null;
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			// Respond to the action bar's Up/Home button
+			case android.R.id.home:
+				NavUtils.navigateUpFromSameTask(this);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

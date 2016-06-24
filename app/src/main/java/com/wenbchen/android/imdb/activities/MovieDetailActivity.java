@@ -13,16 +13,19 @@ import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.util.UtilsString;
 import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MovieDetailActivity extends Activity {
+public class MovieDetailActivity extends AppCompatActivity {
 	public static final String TAG = "MovieDetailActivity";
-	
-	private TextView mDetailTextView;
+
+	//private TextView mDetailTextView;
 	
 	private TextView mTitleTextView;
 	private NetworkImageView mPosterNetworkImageView;
@@ -42,6 +45,8 @@ public class MovieDetailActivity extends Activity {
 	
 	private ProgressDialog pDialog;
 	private ImageLoader imageLoader;
+
+	private Toolbar toolbar;
 	
 	
 	@Override
@@ -50,8 +55,14 @@ public class MovieDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.movie_detail);
-		
-		mDetailTextView = (TextView)findViewById(R.id.details);
+
+		//set a Toolbar to replace the ActionBar
+		toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		setTitle(getResources().getString(R.string.detail));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		//mDetailTextView = (TextView)findViewById(R.id.details);
 		mTitleTextView = (TextView)findViewById(R.id.name);
 		mYearTextView = (TextView)findViewById(R.id.year);
 		mDirectorTextView = (TextView)findViewById(R.id.director);
@@ -134,6 +145,17 @@ public class MovieDetailActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			// Respond to the action bar's Up/Home button
+			case android.R.id.home:
+				NavUtils.navigateUpFromSameTask(this);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private void hidePDialog() {

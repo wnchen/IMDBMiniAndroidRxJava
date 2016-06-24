@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     >
+
+	<!-- The ActionBar displayed at the top -->
+	<include
+		layout="@layout/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
     
     <ScrollView 
         android:layout_width="match_parent"
@@ -15,7 +21,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 		    
-		    <TextView
+		    <!--<TextView
 		        android:id="@+id/details"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
@@ -23,7 +29,7 @@
 		        android:textSize="@dimen/search"
 		        android:textAlignment="center"
 		        android:gravity="center"
-		        android:text="@string/detail" />
+		        android:text="@string/detail" />-->
     
 		    <com.android.volley.toolbox.NetworkImageView
 		  	  android:id="@+id/detailImage"

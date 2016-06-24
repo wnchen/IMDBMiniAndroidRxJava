@@ -21,6 +21,8 @@
     <string name="year_hint_text">...and release year</string>
     <string name="no_movies_found">No Movies Found...</string>
 
+    <string name="movie_list">Movie List</string>
+
     <!-- Movie detail page -->
     <string name="title_detail">Title: </string>
     <string name="year_detail">Released: </string>
