@@ -16,6 +16,7 @@
     <string name="search_name">Name</string>
 
     <string name="movie_search_title">Movie Search</string>
+    <string name="tv_search_title">TV Search</string>
     <string name="detail">Details</string>
     <string name="title_hint_text">Enter an name</string>
     <string name="year_hint_text">...and release year</string>

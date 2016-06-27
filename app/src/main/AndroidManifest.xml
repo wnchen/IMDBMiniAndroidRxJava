@@ -22,7 +22,17 @@
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <activity
-            android:name="com.wenbchen.android.imdb.activities.ListViewActivity"
+            android:name="com.wenbchen.android.imdb.activities.MovieListViewActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wenbchen.android.imdb.activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="com.wenbchen.android.imdb.activities.TVListViewActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
@@ -38,8 +48,20 @@
             android:launchMode="singleTop" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.wenbchen.android.imdb.activities.ListViewActivity" />
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+                android:value="com.wenbchen.android.imdb.activities.MovieListViewActivity" />
+        </activity>
+
+        <activity
+            android:name="com.wenbchen.android.imdb.activities.TVDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wenbchen.android.imdb.activities.TVListViewActivity" />
+        </activity>
+
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"

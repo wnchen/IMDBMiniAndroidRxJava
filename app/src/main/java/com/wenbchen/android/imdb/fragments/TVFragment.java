@@ -1,19 +1,22 @@
 package com.wenbchen.android.imdb.fragments;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Intent;
 
 import com.wenbchen.android.imdb.R;
+import com.wenbchen.android.imdb.activities.TVListViewActivity;
+import com.wenbchen.android.imdb.util.UtilsString;
 
-public class TVFragment extends Fragment {
+public class TVFragment extends BaseFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tv, container, false);
+    protected void initViews() {
+        mSearchTitleTextView.setText(R.string.tv_search_title);
+    }
+
+    protected void performSearch(String title, String year) {
+        Intent intent = new Intent(getActivity(), TVListViewActivity.class);
+        intent.putExtra(UtilsString.TITLE_KEY, title);
+        intent.putExtra(UtilsString.YEAR_KEY, year);
+        startActivity(intent);
     }
 }

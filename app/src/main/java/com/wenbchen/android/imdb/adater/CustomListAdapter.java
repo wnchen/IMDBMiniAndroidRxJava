@@ -21,6 +21,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.activities.MovieDetailActivity;
+import com.wenbchen.android.imdb.activities.MovieListViewActivity;
+import com.wenbchen.android.imdb.activities.TVDetailActivity;
 import com.wenbchen.android.imdb.asynctask.InternetReachabilityTestAyncTask;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
 import com.wenbchen.android.imdb.model.Media;
@@ -104,7 +106,12 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 					@Override
 					public void onReachabilityTestPassed() {
 						dataSource.insertMovie(uuid, 1);
-						Intent intent = new Intent(activity, MovieDetailActivity.class);
+						Intent intent;
+						if (activity instanceof MovieListViewActivity) {
+							intent = new Intent(activity, MovieDetailActivity.class);
+						} else {
+							intent = new Intent(activity, TVDetailActivity.class);
+						}
 						intent.putExtra(UtilsString.UUID_KEY, uuid);
 						activity.startActivity(intent);
 						holder.watched.setText(activity.getResources().getString(R.string.viewed));
