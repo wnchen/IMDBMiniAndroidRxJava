@@ -23,6 +23,7 @@
     <string name="no_movies_found">No Movies Found...</string>
 
     <string name="movie_list">Movie List</string>
+    <string name="tv_list">Series List</string>
 
     <!-- Movie detail page -->
     <string name="title_detail">Title: </string>

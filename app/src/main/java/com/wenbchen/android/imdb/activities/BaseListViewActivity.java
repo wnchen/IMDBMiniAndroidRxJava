@@ -61,7 +61,7 @@ public class BaseListViewActivity extends AppCompatActivity {
         //set a Toolbar to replace the ActionBar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(getResources().getString(R.string.movie_list));
+        setUpPageTitle();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
@@ -170,6 +170,10 @@ public class BaseListViewActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    protected void setUpPageTitle() {
+        return;
     }
 
     protected StringBuffer buildSearchRequest(String title, String year) {
