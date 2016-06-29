@@ -1,6 +1,5 @@
 package com.wenbchen.android.imdb.activities;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
