@@ -1,6 +1,5 @@
 package com.wenbchen.android.imdb.activities;
 
-
 import java.net.URLEncoder;
 import android.util.Log;
 import com.wenbchen.android.imdb.R;

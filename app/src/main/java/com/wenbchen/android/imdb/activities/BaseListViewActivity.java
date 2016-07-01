@@ -112,23 +112,6 @@ public class BaseListViewActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_LIST_TAG);
     }
 
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-    }
 
     @Override
     protected void onStop() {
