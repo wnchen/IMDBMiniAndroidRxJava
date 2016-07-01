@@ -60,7 +60,6 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         setTitle(getResources().getString(R.string.detail));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //mDetailTextView = (TextView)findViewById(R.id.details);
         mTitleTextView = (TextView)findViewById(R.id.name);
         mYearTextView = (TextView)findViewById(R.id.year);
         mDirectorTextView = (TextView)findViewById(R.id.director);
