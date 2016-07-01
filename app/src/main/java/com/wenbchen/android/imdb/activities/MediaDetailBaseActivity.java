@@ -25,8 +25,6 @@ import android.widget.TextView;
 public class MediaDetailBaseActivity extends AppCompatActivity {
     public static final String TAG = "MediaDetailBaseActivity";
 
-    //private TextView mDetailTextView;
-
     private TextView mTitleTextView;
     private NetworkImageView mPosterNetworkImageView;
     private TextView mYearTextView;
