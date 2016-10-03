@@ -1,8 +1,11 @@
 package com.wenbchen.android.imdb.activities;
 
 import java.net.URLEncoder;
+import java.util.LinkedHashMap;
+
 import android.util.Log;
 import com.wenbchen.android.imdb.R;
+import com.wenbchen.android.imdb.util.HttpUrlBuilder;
 import com.wenbchen.android.imdb.util.UtilsString;
 
 public class TVListViewActivity extends BaseListViewActivity {
@@ -18,17 +21,13 @@ public class TVListViewActivity extends BaseListViewActivity {
     protected StringBuffer buildSearchRequest(String title, String year) {
         StringBuffer mUrlStringBuffer = new StringBuffer();
         mUrlStringBuffer.append(UtilsString.BASE_URL);
-        mUrlStringBuffer.append("?s=");
-        try {
-            title = URLEncoder.encode(title, "UTF-8");
-            year = URLEncoder.encode(year, "UTF-8");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mUrlStringBuffer.append(title);
-        mUrlStringBuffer.append("&y=");
-        mUrlStringBuffer.append(year);
-        mUrlStringBuffer.append("&type=series");
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        map.put("s", title);
+        map.put("y", year);
+        map.put("type", "series");
+        HttpUrlBuilder builder = new HttpUrlBuilder();
+        mUrlStringBuffer.append("?");
+        mUrlStringBuffer.append(builder.getUrlEncodeUTF8(map));
         Log.i(TAG, "Url is: " + mUrlStringBuffer.toString());
         return mUrlStringBuffer;
     }
