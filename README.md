@@ -1,14 +1,14 @@
-# Android Navigation Drawer Exercise
+# IMDBMiniAndroid
 
-Android app to use as the base app for implementing material design style navigation drawer.
+Android
 
-The app provides four pre-defined fragments to use when a list item in the navigation drawer is clicked.
+Fragment
 * MovieFragment
 * TVFragment
 
-## Usage
-This app is intended to be the base project on top of which new features can be added. To use it, clone the project and import it using the following steps:
+SQLite database
+
+OMDB api: https://www.omdbapi.com
 
 
-## Suggested extensions:
-
+Developer website: https://sites.google.com/site/wenbinchensgarden/home
