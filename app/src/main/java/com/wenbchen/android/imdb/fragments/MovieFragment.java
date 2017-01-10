@@ -16,7 +16,7 @@ public class MovieFragment extends BaseFragment {
     }
 
     protected void performSearch(String title, String year) {
-        Intent intent = new Intent(getActivity(), BaseListViewActivity.class);
+        Intent intent = new Intent(getActivity(), MovieListViewActivity.class);
         intent.putExtra(UtilsString.TITLE_KEY, title);
         intent.putExtra(UtilsString.YEAR_KEY, year);
         startActivity(intent);

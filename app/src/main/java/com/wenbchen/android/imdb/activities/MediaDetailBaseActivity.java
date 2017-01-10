@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.util.UtilsString;
-import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

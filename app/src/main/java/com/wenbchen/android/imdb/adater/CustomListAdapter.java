@@ -29,9 +29,7 @@ import com.wenbchen.android.imdb.activities.TVDetailActivity;
 import com.wenbchen.android.imdb.asynctask.InternetReachabilityTestAyncTask;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
 import com.wenbchen.android.imdb.entity.Movie;
-import com.wenbchen.android.imdb.model.Media;
 import com.wenbchen.android.imdb.util.UtilsString;
-import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
 
 public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.ViewHolder> {
 	public static final String TAG = "CustomListAdapter";

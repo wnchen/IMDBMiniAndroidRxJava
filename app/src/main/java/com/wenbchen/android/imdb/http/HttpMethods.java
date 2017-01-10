@@ -2,6 +2,7 @@ package com.wenbchen.android.imdb.http;
 
 import com.wenbchen.android.imdb.entity.HttpResult;
 import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.util.ServiceType;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +29,7 @@ public class HttpMethods {
 
     private Retrofit retrofit;
     private MovieService movieService;
+    private MovieDetailService detailService;
 
     private HttpMethods() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -41,6 +43,7 @@ public class HttpMethods {
                 .build();
 
         movieService = retrofit.create(MovieService.class);
+        detailService = retrofit.create(MovieDetailService.class);
     }
 
     private static class SingletonHolder {
@@ -51,9 +54,23 @@ public class HttpMethods {
         return SingletonHolder.INSTANCE;
     }
 
-    public void getMovie(Subscriber<List<Movie>> subscriber, String title) {
-        Observable observable = movieService.getMovies(title)
-                .map(new HttpResultFunc<List<Movie>>());
+    public void getMovie(ServiceType serviceType, Subscriber<List<Movie>> subscriber, String title, String year, String type, String uuid) {
+        Observable observable = null;
+        switch (serviceType) {
+            case MOVIESEARCH:
+                observable = movieService.getMovies(title, year, type)
+                        .map(new HttpResultFunc<List<Movie>>());
+                break;
+            case MOVIEDETAIL:
+                observable = detailService.getMovies(uuid)
+                        .map(new HttpResultFunc<List<Movie>>());
+                break;
+            default:
+                observable = movieService.getMovies(title, year, type)
+                        .map(new HttpResultFunc<List<Movie>>());
+                break;
+        }
+
 
         tosubscribe(observable, subscriber);
     }
