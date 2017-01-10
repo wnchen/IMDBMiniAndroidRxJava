@@ -3,26 +3,26 @@ package com.wenbchen.android.imdb.volleysingleton;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.volley.Request;
+/*import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.wenbchen.android.imdb.util.LruBitmapCache;
+import com.wenbchen.android.imdb.util.LruBitmapCache;*/
 
 public class VolleySingleton {
 	public static final String TAG = "VolleySingleton";
 
 	private volatile static VolleySingleton mInstance;
 	
-	private RequestQueue mRequestQueue;
-	private ImageLoader mImageLoader;
+	/*private RequestQueue mRequestQueue;
+	private ImageLoader mImageLoader;*/
 	private static Context mContext;
 
 	private VolleySingleton(Context context) {
 		mContext = context;
-		mRequestQueue = getRequestQueue();
+	/*	mRequestQueue = getRequestQueue();
         mImageLoader = new ImageLoader(this.mRequestQueue,
-				new LruBitmapCache());
+				new LruBitmapCache());*/
 	}
 
 
@@ -37,15 +37,16 @@ public class VolleySingleton {
 		return mInstance;
 	}
 
-	public RequestQueue getRequestQueue() {
+	/*public RequestQueue getRequestQueue() {
 		if (mRequestQueue == null) {
 			mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
 		}
 
 		return mRequestQueue;
 	}
+	*/
 
-	public ImageLoader getImageLoader() {
+	/*public ImageLoader getImageLoader() {
 		return mImageLoader;
 	}
 
@@ -64,5 +65,5 @@ public class VolleySingleton {
 		if (mRequestQueue != null) {
 			mRequestQueue.cancelAll(tag);
 		}
-	}
+	}*/
 }

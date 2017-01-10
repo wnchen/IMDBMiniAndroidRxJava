@@ -20,14 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.adater.CustomListAdapter;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
+import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.http.HttpMethods;
 import com.wenbchen.android.imdb.model.Media;
+import com.wenbchen.android.imdb.subscribers.ProgressSubscriber;
+import com.wenbchen.android.imdb.subscribers.SubscriberOnNextListener;
 import com.wenbchen.android.imdb.util.UtilsString;
 import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
 
@@ -39,7 +39,7 @@ public class BaseListViewActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private StringBuffer mUrlStringBuffer;
     private ProgressDialog pDialog;
-    private List<Media> movieList = new ArrayList<Media>();
+    private List<Movie> movieList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -48,7 +48,9 @@ public class BaseListViewActivity extends AppCompatActivity {
     protected String title;
     protected String year;
 
-    public List<Media> getMovieList() {
+    private SubscriberOnNextListener getTopMovieOnNext;
+
+    public List<Movie> getMovieList() {
         return movieList;
     }
 
@@ -63,6 +65,7 @@ public class BaseListViewActivity extends AppCompatActivity {
         setUpPageTitle();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        movieList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         title = extras.getString(UtilsString.TITLE_KEY);
         year = extras.getString(UtilsString.YEAR_KEY);
@@ -80,7 +83,17 @@ public class BaseListViewActivity extends AppCompatActivity {
         adapter = new CustomListAdapter(this, movieList, dataSource);
         recyclerView.setAdapter(adapter);
 
-        mUrlStringBuffer = new StringBuffer();
+        getTopMovieOnNext = new SubscriberOnNextListener<List<Movie>>() {
+            @Override
+            public void onNext(List<Movie> movies) {
+                Log.i("TAG", "response is "+ movies.toString());
+                getMovieList().clear();
+                getMovieList().addAll(movies);
+                adapter.notifyDataSetChanged();
+            }
+        };
+
+        /*mUrlStringBuffer = new StringBuffer();
         mUrlStringBuffer = buildSearchRequest(title, year);
 
 
@@ -109,16 +122,21 @@ public class BaseListViewActivity extends AppCompatActivity {
         });
 
         // Adding request to request queue
-        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_LIST_TAG);
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_LIST_TAG);*/
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getMovies();
+    }
 
     @Override
     protected void onStop() {
         // TODO Auto-generated method stub
         super.onStop();
-        hidePDialog();
-        VolleySingleton.getInstance(this.getApplicationContext()).cancelPendingRequests(UtilsString.MOVIE_LIST_TAG);
+       /* hidePDialog();
+        VolleySingleton.getInstance(this.getApplicationContext()).cancelPendingRequests(UtilsString.MOVIE_LIST_TAG);*/
     }
 
     @Override
@@ -158,11 +176,15 @@ public class BaseListViewActivity extends AppCompatActivity {
         return;
     }
 
+    private void getMovies() {
+        HttpMethods.getInstance().getMovie(new ProgressSubscriber(getTopMovieOnNext, BaseListViewActivity.this), title);
+    }
+
     protected StringBuffer buildSearchRequest(String title, String year) {
         return new StringBuffer();
     }
 
-    private void parse(JSONObject jsonObject) {
+    /*private void parse(JSONObject jsonObject) {
         try {
             JSONArray jsonArray = jsonObject.getJSONArray(UtilsString.SEARCH_KEY);
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -175,5 +197,5 @@ public class BaseListViewActivity extends AppCompatActivity {
             e1.printStackTrace();
             mNoMoviesTextView.setVisibility(View.VISIBLE);
         }
-    }
+    }*/
 }

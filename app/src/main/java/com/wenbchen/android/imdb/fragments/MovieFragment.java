@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 
 import com.wenbchen.android.imdb.R;
+import com.wenbchen.android.imdb.activities.BaseListViewActivity;
 import com.wenbchen.android.imdb.activities.MovieListViewActivity;
 import com.wenbchen.android.imdb.util.UtilsString;
 
@@ -15,7 +16,7 @@ public class MovieFragment extends BaseFragment {
     }
 
     protected void performSearch(String title, String year) {
-        Intent intent = new Intent(getActivity(), MovieListViewActivity.class);
+        Intent intent = new Intent(getActivity(), BaseListViewActivity.class);
         intent.putExtra(UtilsString.TITLE_KEY, title);
         intent.putExtra(UtilsString.YEAR_KEY, year);
         startActivity(intent);

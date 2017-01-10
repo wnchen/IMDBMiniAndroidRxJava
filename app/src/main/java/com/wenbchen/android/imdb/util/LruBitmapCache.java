@@ -1,10 +1,11 @@
 package com.wenbchen.android.imdb.util;
 
-import com.android.volley.toolbox.ImageLoader.ImageCache;
+//import com.android.volley.toolbox.ImageLoader.ImageCache;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 
+/*
 public class LruBitmapCache extends LruCache<String, Bitmap> implements
 		ImageCache {
 	public static int getDefaultLruCacheSize() {
@@ -36,4 +37,4 @@ public class LruBitmapCache extends LruCache<String, Bitmap> implements
 	public void putBitmap(String url, Bitmap bitmap) {
 		put(url, bitmap);
 	}
-}
+}*/

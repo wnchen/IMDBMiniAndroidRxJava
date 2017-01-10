@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
-            case R.id.nav_south_park:
+            case R.id.nav_movie:
                 fragmentClass = MovieFragment.class;
                 break;
-            case R.id.nav_family_guy:
+            case R.id.nav_tv:
                 fragmentClass = TVFragment.class;
                 break;
             default:

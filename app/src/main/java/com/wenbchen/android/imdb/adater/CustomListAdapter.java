@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,17 +15,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
+//import com.android.volley.toolbox.ImageLoader;
+//import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.activities.MovieDetailActivity;
 import com.wenbchen.android.imdb.activities.MovieListViewActivity;
 import com.wenbchen.android.imdb.activities.TVDetailActivity;
 import com.wenbchen.android.imdb.asynctask.InternetReachabilityTestAyncTask;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
+import com.wenbchen.android.imdb.entity.Movie;
 import com.wenbchen.android.imdb.model.Media;
 import com.wenbchen.android.imdb.util.UtilsString;
 import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
@@ -34,20 +38,20 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 	
 	private Activity activity;
 	private LayoutInflater inflater;
-	private List<Media> movieItems;
-	ImageLoader imageLoader;
+	private List<Movie> movieItems;
+	//ImageLoader imageLoader;
 	private WatchedMoviesDataSource dataSource;
 	
-	public CustomListAdapter(Activity activity, List<Media> movieItems, WatchedMoviesDataSource dataSource) {
+	public CustomListAdapter(Activity activity, List<Movie> movieItems, WatchedMoviesDataSource dataSource) {
 		this.activity = activity;
 		this.movieItems = movieItems;
 		this.dataSource = dataSource;
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		imageLoader = VolleySingleton.getInstance(activity.getApplicationContext()).getImageLoader();
+		//imageLoader = VolleySingleton.getInstance(activity.getApplicationContext()).getImageLoader();
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
-		NetworkImageView thumbNail;
+		ImageView thumbNail;
 		TextView title;
 		TextView type;
 		TextView year;
@@ -56,7 +60,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 		public ViewHolder(View view) {
 			super(view);
 			this.type = (TextView) view.findViewById(R.id.type);
-			this.thumbNail = (NetworkImageView) view.findViewById(R.id.thumbnail);
+			this.thumbNail = (ImageView) view.findViewById(R.id.thumbnail);
 			this.title = (TextView) view.findViewById(R.id.title);
 			this.year = (TextView) view.findViewById(R.id.releaseYear);
 			this.watched = (TextView) view.findViewById(R.id.viewed);
@@ -74,16 +78,15 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 
 	@Override
 	public void onBindViewHolder(final ViewHolder holder, int position) {
-		Media m = movieItems.get(position);
+		Movie m = movieItems.get(position);
 		final String uuid = m.getUuid();
 
 		// thumbnail image
 		Log.i(TAG, "POS " + position + " thumb url " + m.getThumbnailUrl());
 		if (m.getThumbnailUrl().length() > 0 &&!m.getThumbnailUrl().equalsIgnoreCase(UtilsString.NA_STRING)) {
-			holder.thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
+			Picasso.with(activity).load(m.getThumbnailUrl()).into(holder.thumbNail);
 		} else {
-			holder.thumbNail.setImageUrl(null, imageLoader);
-			holder.thumbNail.setDefaultImageResId(R.drawable.default_thumb);
+			holder.thumbNail.setImageBitmap(BitmapFactory.decodeResource(activity.getResources(), R.drawable.default_thumb));
 		}
 		// title
 		holder.title.setText(m.getTitle());

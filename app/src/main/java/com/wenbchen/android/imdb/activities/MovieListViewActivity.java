@@ -17,7 +17,7 @@ public class MovieListViewActivity extends BaseListViewActivity {
 		setTitle(getResources().getString(R.string.movie_list));
 	}
 
-	@Override
+	/*@Override
 	protected StringBuffer buildSearchRequest(String title, String year) {
 		StringBuffer mUrlStringBuffer = new StringBuffer();
 		mUrlStringBuffer.append(UtilsString.BASE_URL);
@@ -30,5 +30,5 @@ public class MovieListViewActivity extends BaseListViewActivity {
 		mUrlStringBuffer.append(builder.getUrlEncodeUTF8(map));
 		Log.i(TAG, "Url is: " + mUrlStringBuffer.toString());
 		return mUrlStringBuffer;
-	}
+	}*/
 }

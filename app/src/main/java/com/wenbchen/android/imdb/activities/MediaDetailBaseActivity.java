@@ -3,12 +3,7 @@ package com.wenbchen.android.imdb.activities;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.NetworkImageView;
+
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.util.UtilsString;
 import com.wenbchen.android.imdb.volleysingleton.VolleySingleton;
@@ -26,7 +21,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
     public static final String TAG = "MediaDetailBaseActivity";
 
     private TextView mTitleTextView;
-    private NetworkImageView mPosterNetworkImageView;
+    //private NetworkImageView mPosterNetworkImageView;
     private TextView mYearTextView;
     private TextView mDurationTextView;
     private TextView mGenreTextView;
@@ -42,7 +37,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
     private StringBuffer mStringBuffer;
 
     private ProgressDialog pDialog;
-    private ImageLoader imageLoader;
+    //private ImageLoader imageLoader;
 
     private Toolbar toolbar;
 
@@ -64,7 +59,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         mYearTextView = (TextView)findViewById(R.id.year);
         mDirectorTextView = (TextView)findViewById(R.id.director);
         mRatingTextView = (TextView)findViewById(R.id.rating);
-        mPosterNetworkImageView = (NetworkImageView)findViewById(R.id.detailImage);
+        //mPosterNetworkImageView = (NetworkImageView)findViewById(R.id.detailImage);
 
         mDurationTextView = (TextView)findViewById(R.id.duration);
         mGenreTextView = (TextView)findViewById(R.id.genre);
@@ -75,8 +70,8 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         mCountryTextView = (TextView)findViewById(R.id.country);
         mAwardsTextView = (TextView)findViewById(R.id.award);
 
-        imageLoader = VolleySingleton.getInstance(this.getApplicationContext()).getImageLoader();
-        mPosterNetworkImageView.setImageUrl(null, imageLoader);
+        //imageLoader = VolleySingleton.getInstance(this.getApplicationContext()).getImageLoader();
+        //mPosterNetworkImageView.setImageUrl(null, imageLoader);
 
         mStringBuffer = new StringBuffer();
         Bundle bundle = getIntent().getExtras();
@@ -92,7 +87,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         pDialog.show();
 
         // Creating volley request obj
-        JsonObjectRequest movieReq = new JsonObjectRequest(mStringBuffer.toString(), null,
+      /*  JsonObjectRequest movieReq = new JsonObjectRequest(mStringBuffer.toString(), null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -106,10 +101,10 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 hidePDialog();
             }
-        });
+        });*/
 
         // Adding request to request queue
-        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_DETAIL_TAG);
+        //VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_DETAIL_TAG);
     }
 
     @Override
@@ -134,8 +129,8 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
     protected void onStop() {
         // TODO Auto-generated method stub
         super.onStop();
-        hidePDialog();
-        VolleySingleton.getInstance(this.getApplicationContext()).cancelPendingRequests(UtilsString.MOVIE_DETAIL_TAG);
+        //hidePDialog();
+        //VolleySingleton.getInstance(this.getApplicationContext()).cancelPendingRequests(UtilsString.MOVIE_DETAIL_TAG);
     }
 
     @Override
@@ -165,14 +160,14 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
     private void parse(JSONObject obj){
         try {
             String thumbUrl = obj.getString(UtilsString.POSTER_KEY);
-            mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);
+            //mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);
             if (thumbUrl != null && !thumbUrl.equalsIgnoreCase(UtilsString.NA_STRING)){
                 Log.i(TAG, "thumbnail url not null");
-                mPosterNetworkImageView.setImageUrl(obj.getString(UtilsString.POSTER_KEY), imageLoader);
+               // mPosterNetworkImageView.setImageUrl(obj.getString(UtilsString.POSTER_KEY), imageLoader);
             }
             else {
                 Log.i(TAG, "null thumbnail url");
-                mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);
+                //mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);
             }
             mTitleTextView.setText(obj.getString(UtilsString.TITLE_KEY));
             mYearTextView.setText(obj.getString(UtilsString.YEAR_KEY));
