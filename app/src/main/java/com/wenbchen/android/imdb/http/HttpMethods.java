@@ -1,7 +1,7 @@
 package com.wenbchen.android.imdb.http;
 
-import com.wenbchen.android.imdb.entity.HttpResult;
-import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.model.MediaSearchEntity;
+import com.wenbchen.android.imdb.model.MediaSearchHttpResult;
 import com.wenbchen.android.imdb.util.ServiceType;
 
 import java.util.List;
@@ -54,19 +54,19 @@ public class HttpMethods {
         return SingletonHolder.INSTANCE;
     }
 
-    public void getMovie(ServiceType serviceType, Subscriber<List<Movie>> subscriber, String title, String year, String type, String uuid) {
+    public void getMovie(ServiceType serviceType, Subscriber<List<MediaSearchEntity>> subscriber, String title, String year, String type, String uuid) {
         Observable observable = null;
         switch (serviceType) {
             case MOVIESEARCH:
                 observable = movieService.getMovies(title, year, type)
-                        .map(new HttpResultFunc<List<Movie>>());
+                        .map(new HttpResultFunc<List<MediaSearchEntity>>());
                 break;
             case MOVIEDETAIL:
                 observable = detailService.getMovies(uuid);
                 break;
             default:
                 observable = movieService.getMovies(title, year, type)
-                        .map(new HttpResultFunc<List<Movie>>());
+                        .map(new HttpResultFunc<List<MediaSearchEntity>>());
                 break;
         }
 
@@ -82,10 +82,10 @@ public class HttpMethods {
     }
 
 
-    private class HttpResultFunc<T> implements Func1<HttpResult<T>, T>{
+    private class HttpResultFunc<T> implements Func1<MediaSearchHttpResult<T>, T>{
 
         @Override
-        public T call(HttpResult<T> httpResult) {
+        public T call(MediaSearchHttpResult<T> httpResult) {
             //if (!httpResult.getResponse()) {
             if (httpResult.getResponse().equalsIgnoreCase("False")) {
                 throw new ApiException(100);

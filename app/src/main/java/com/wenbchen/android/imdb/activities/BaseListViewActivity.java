@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.wenbchen.android.imdb.R;
 import com.wenbchen.android.imdb.adater.CustomListAdapter;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
-import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.model.MediaSearchEntity;
 import com.wenbchen.android.imdb.subscribers.SubscriberOnNextListener;
 import com.wenbchen.android.imdb.util.UtilsString;
 
@@ -31,7 +31,7 @@ public class BaseListViewActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private StringBuffer mUrlStringBuffer;
     private ProgressDialog pDialog;
-    private List<Movie> movieList;
+    private List<MediaSearchEntity> mediaSearchEntityList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -42,8 +42,8 @@ public class BaseListViewActivity extends AppCompatActivity {
 
     private SubscriberOnNextListener getTopMovieOnNext;
 
-    public List<Movie> getMovieList() {
-        return movieList;
+    public List<MediaSearchEntity> getMediaSearchEntityList() {
+        return mediaSearchEntityList;
     }
 
     public SubscriberOnNextListener getGetTopMovieOnNext() {
@@ -61,7 +61,7 @@ public class BaseListViewActivity extends AppCompatActivity {
         setUpPageTitle();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        movieList = new ArrayList<>();
+        mediaSearchEntityList = new ArrayList<>();
         Bundle extras = getIntent().getExtras();
         title = extras.getString(UtilsString.TITLE_KEY);
         year = extras.getString(UtilsString.YEAR_KEY);
@@ -76,15 +76,15 @@ public class BaseListViewActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new CustomListAdapter(this, movieList, dataSource);
+        adapter = new CustomListAdapter(this, mediaSearchEntityList, dataSource);
         recyclerView.setAdapter(adapter);
 
-        getTopMovieOnNext = new SubscriberOnNextListener<List<Movie>>() {
+        getTopMovieOnNext = new SubscriberOnNextListener<List<MediaSearchEntity>>() {
             @Override
-            public void onNext(List<Movie> movies) {
+            public void onNext(List<MediaSearchEntity> movies) {
                 Log.i("TAG", "response is "+ movies.toString());
-                getMovieList().clear();
-                getMovieList().addAll(movies);
+                getMediaSearchEntityList().clear();
+                getMediaSearchEntityList().addAll(movies);
                 adapter.notifyDataSetChanged();
             }
         };

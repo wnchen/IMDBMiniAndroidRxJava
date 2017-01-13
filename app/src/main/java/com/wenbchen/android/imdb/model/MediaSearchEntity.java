@@ -1,14 +1,12 @@
-package com.wenbchen.android.imdb.entity;
+package com.wenbchen.android.imdb.model;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
 
 /**
  * Created by wenbchen on 12/1/16.
  */
 
-public class Movie {
+public class MediaSearchEntity {
 
     @SerializedName("Title")
     private String title;
@@ -71,9 +69,9 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie.title =" + title
-                + " Movie.thumbnailUrl=" + thumbnailUrl
-                + " Movie.year=" + year
+        return "MediaSearchEntity.title =" + title
+                + " MediaSearchEntity.thumbnailUrl=" + thumbnailUrl
+                + " MediaSearchEntity.year=" + year
                 + " | ";
     }
 }

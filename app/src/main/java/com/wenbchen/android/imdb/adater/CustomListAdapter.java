@@ -28,7 +28,7 @@ import com.wenbchen.android.imdb.activities.MovieListViewActivity;
 import com.wenbchen.android.imdb.activities.TVDetailActivity;
 import com.wenbchen.android.imdb.asynctask.InternetReachabilityTestAyncTask;
 import com.wenbchen.android.imdb.database.WatchedMoviesDataSource;
-import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.model.MediaSearchEntity;
 import com.wenbchen.android.imdb.util.UtilsString;
 
 public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.ViewHolder> {
@@ -36,13 +36,13 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 	
 	private Activity activity;
 	private LayoutInflater inflater;
-	private List<Movie> movieItems;
+	private List<MediaSearchEntity> mediaSearchEntityItems;
 	//ImageLoader imageLoader;
 	private WatchedMoviesDataSource dataSource;
 	
-	public CustomListAdapter(Activity activity, List<Movie> movieItems, WatchedMoviesDataSource dataSource) {
+	public CustomListAdapter(Activity activity, List<MediaSearchEntity> mediaSearchEntityItems, WatchedMoviesDataSource dataSource) {
 		this.activity = activity;
-		this.movieItems = movieItems;
+		this.mediaSearchEntityItems = mediaSearchEntityItems;
 		this.dataSource = dataSource;
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		//imageLoader = VolleySingleton.getInstance(activity.getApplicationContext()).getImageLoader();
@@ -76,7 +76,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 
 	@Override
 	public void onBindViewHolder(final ViewHolder holder, int position) {
-		Movie m = movieItems.get(position);
+		MediaSearchEntity m = mediaSearchEntityItems.get(position);
 		final String uuid = m.getUuid();
 
 		// thumbnail image
@@ -136,7 +136,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Vi
 
 	@Override
 	public int getItemCount() {
-		return movieItems.size();
+		return mediaSearchEntityItems.size();
 	}
 
 }

@@ -1,15 +1,12 @@
-package com.wenbchen.android.imdb.entity;
-
-import android.util.Log;
+package com.wenbchen.android.imdb.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.wenbchen.android.imdb.util.UtilsString;
 
 /**
  * Created by wenbchen on 1/13/17.
  */
 
-public class MediaEntity {
+public class MediaDetailEntity {
 
     @SerializedName("Title")
     private String title;
@@ -240,9 +237,9 @@ public class MediaEntity {
 
     @Override
     public String toString() {
-        return "Movie.title =" + title
-                + " Movie.thumbnailUrl=" + poster
-                + " Movie.year=" + year
+        return "MediaSearchEntity.title =" + title
+                + " MediaSearchEntity.thumbnailUrl=" + poster
+                + " MediaSearchEntity.year=" + year
                 + " | ";
     }
 }

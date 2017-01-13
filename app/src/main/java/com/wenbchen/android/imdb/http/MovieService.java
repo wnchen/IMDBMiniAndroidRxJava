@@ -1,7 +1,7 @@
 package com.wenbchen.android.imdb.http;
 
-import com.wenbchen.android.imdb.entity.HttpResult;
-import com.wenbchen.android.imdb.entity.Movie;
+import com.wenbchen.android.imdb.model.MediaSearchEntity;
+import com.wenbchen.android.imdb.model.MediaSearchHttpResult;
 
 import java.util.List;
 import rx.Observable;
@@ -16,5 +16,5 @@ import retrofit2.http.Query;
 public interface MovieService {
 
     @GET(" ")
-    Observable<HttpResult<List<Movie>>> getMovies(@Query("s") String title, @Query("y") String year, @Query("type") String type);
+    Observable<MediaSearchHttpResult<List<MediaSearchEntity>>> getMovies(@Query("s") String title, @Query("y") String year, @Query("type") String type);
 }

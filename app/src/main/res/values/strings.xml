@@ -25,7 +25,7 @@
     <string name="movie_list">Movie List</string>
     <string name="tv_list">Series List</string>
 
-    <!-- Movie detail page -->
+    <!-- MediaSearchEntity detail page -->
     <string name="title_detail">Title: </string>
     <string name="year_detail">Released: </string>
     <string name="duration_detail">Runtime: </string>

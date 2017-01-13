@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import com.squareup.picasso.Picasso;
 import com.wenbchen.android.imdb.R;
-import com.wenbchen.android.imdb.entity.MediaEntity;
+import com.wenbchen.android.imdb.model.MediaDetailEntity;
 import com.wenbchen.android.imdb.http.HttpMethods;
 import com.wenbchen.android.imdb.subscribers.ProgressSubscriber;
 import com.wenbchen.android.imdb.subscribers.SubscriberOnNextListener;
@@ -116,9 +116,9 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         // Adding request to request queue
         //VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_DETAIL_TAG);
 
-        getMediaDetailOnNext = new SubscriberOnNextListener<MediaEntity>() {
+        getMediaDetailOnNext = new SubscriberOnNextListener<MediaDetailEntity>() {
             @Override
-            public void onNext(MediaEntity media) {
+            public void onNext(MediaDetailEntity media) {
                 Log.i("TAG", "response is "+ media.toString());
                 String thumbUrl = media.getPoster();
                 //mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);

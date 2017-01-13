@@ -10,7 +10,7 @@ public class UtilsString {
 	public static final String MOVIE_LIST_TAG = "movie_list_tag";
 	public static final String MOVIE_DETAIL_TAG = "movie_detail_tag";
 	
-	//Movie json keys
+	//MediaSearchEntity json keys
 	public static final String SEARCH_KEY = "Search";
 	public static final String UUID_KEY = "uuid";
 	public static String ID_KEY = "imdbID";

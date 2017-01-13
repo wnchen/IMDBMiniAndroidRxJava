@@ -20,7 +20,7 @@ public class ApiException extends RuntimeException {
         String msg = "";
         switch(code) {
             case MOVIE_NOT_FOUND:
-                msg = "No Movie Found";
+                msg = "No MediaSearchEntity Found";
                 break;
             default:
                 msg = "Unknown Error";

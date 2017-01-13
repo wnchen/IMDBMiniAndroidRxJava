@@ -1,4 +1,4 @@
-package com.wenbchen.android.imdb.entity;
+package com.wenbchen.android.imdb.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by wenbchen on 12/1/16.
  */
 
-public class HttpResult<T> {
+public class MediaSearchHttpResult<T> {
 
     //to model data
     @SerializedName("Search")

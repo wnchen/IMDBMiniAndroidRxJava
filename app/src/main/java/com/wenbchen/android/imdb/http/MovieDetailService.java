@@ -1,10 +1,6 @@
 package com.wenbchen.android.imdb.http;
 
-import com.wenbchen.android.imdb.entity.HttpResult;
-import com.wenbchen.android.imdb.entity.MediaEntity;
-import com.wenbchen.android.imdb.entity.Movie;
-
-import java.util.List;
+import com.wenbchen.android.imdb.model.MediaDetailEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -16,5 +12,5 @@ import rx.Observable;
 
 public interface MovieDetailService {
     @GET(" ")
-    Observable<MediaEntity> getMovies(@Query("i") String uuid);
+    Observable<MediaDetailEntity> getMovies(@Query("i") String uuid);
 }
