@@ -31,7 +31,7 @@
 		        android:gravity="center"
 		        android:text="@string/detail" />-->
     
-		    <com.android.volley.toolbox.NetworkImageView
+		    <ImageView
 		  	  android:id="@+id/detailImage"
 			  android:layout_width="match_parent"
 			  android:layout_height="200dp" 

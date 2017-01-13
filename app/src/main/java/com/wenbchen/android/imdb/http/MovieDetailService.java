@@ -1,6 +1,7 @@
 package com.wenbchen.android.imdb.http;
 
 import com.wenbchen.android.imdb.entity.HttpResult;
+import com.wenbchen.android.imdb.entity.MediaEntity;
 import com.wenbchen.android.imdb.entity.Movie;
 
 import java.util.List;
@@ -15,5 +16,5 @@ import rx.Observable;
 
 public interface MovieDetailService {
     @GET(" ")
-    Observable<HttpResult<List<Movie>>> getMovies(@Query("i") String uuid);
+    Observable<MediaEntity> getMovies(@Query("i") String uuid);
 }

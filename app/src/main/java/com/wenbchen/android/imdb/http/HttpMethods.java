@@ -62,8 +62,7 @@ public class HttpMethods {
                         .map(new HttpResultFunc<List<Movie>>());
                 break;
             case MOVIEDETAIL:
-                observable = detailService.getMovies(uuid)
-                        .map(new HttpResultFunc<List<Movie>>());
+                observable = detailService.getMovies(uuid);
                 break;
             default:
                 observable = movieService.getMovies(title, year, type)

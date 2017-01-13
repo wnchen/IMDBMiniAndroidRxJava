@@ -4,23 +4,33 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import com.squareup.picasso.Picasso;
 import com.wenbchen.android.imdb.R;
+import com.wenbchen.android.imdb.entity.MediaEntity;
+import com.wenbchen.android.imdb.http.HttpMethods;
+import com.wenbchen.android.imdb.subscribers.ProgressSubscriber;
+import com.wenbchen.android.imdb.subscribers.SubscriberOnNextListener;
+import com.wenbchen.android.imdb.util.ServiceType;
 import com.wenbchen.android.imdb.util.UtilsString;
 
 import android.app.ProgressDialog;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 
 public class MediaDetailBaseActivity extends AppCompatActivity {
     public static final String TAG = "MediaDetailBaseActivity";
 
+    private String uuid;
     private TextView mTitleTextView;
-    //private NetworkImageView mPosterNetworkImageView;
+    private ImageView mPosterNetworkImageView;
     private TextView mYearTextView;
     private TextView mDurationTextView;
     private TextView mGenreTextView;
@@ -39,6 +49,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
     //private ImageLoader imageLoader;
 
     private Toolbar toolbar;
+    private SubscriberOnNextListener getMediaDetailOnNext;
 
 
     @Override
@@ -58,7 +69,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         mYearTextView = (TextView)findViewById(R.id.year);
         mDirectorTextView = (TextView)findViewById(R.id.director);
         mRatingTextView = (TextView)findViewById(R.id.rating);
-        //mPosterNetworkImageView = (NetworkImageView)findViewById(R.id.detailImage);
+        mPosterNetworkImageView = (ImageView)findViewById(R.id.detailImage);
 
         mDurationTextView = (TextView)findViewById(R.id.duration);
         mGenreTextView = (TextView)findViewById(R.id.genre);
@@ -72,18 +83,18 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         //imageLoader = VolleySingleton.getInstance(this.getApplicationContext()).getImageLoader();
         //mPosterNetworkImageView.setImageUrl(null, imageLoader);
 
-        mStringBuffer = new StringBuffer();
+        //mStringBuffer = new StringBuffer();
         Bundle bundle = getIntent().getExtras();
-        String uuid = bundle.getString(UtilsString.UUID_KEY);
+        uuid = bundle.getString(UtilsString.UUID_KEY);
 
-        mStringBuffer.append(UtilsString.BASE_URL);
+    /*    mStringBuffer.append(UtilsString.BASE_URL);
         mStringBuffer.append("?i=");
         mStringBuffer.append(uuid);
 
         pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
         pDialog.setMessage(getResources().getString(R.string.load_dialog_msg));
-        pDialog.show();
+        pDialog.show();*/
 
         // Creating volley request obj
       /*  JsonObjectRequest movieReq = new JsonObjectRequest(mStringBuffer.toString(), null,
@@ -104,12 +115,45 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
 
         // Adding request to request queue
         //VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_DETAIL_TAG);
+
+        getMediaDetailOnNext = new SubscriberOnNextListener<MediaEntity>() {
+            @Override
+            public void onNext(MediaEntity media) {
+                Log.i("TAG", "response is "+ media.toString());
+                String thumbUrl = media.getPoster();
+                //mPosterNetworkImageView.setDefaultImageResId(R.drawable.default_thumb);
+                if (thumbUrl != null && !thumbUrl.equalsIgnoreCase(UtilsString.NA_STRING)){
+                    Log.i(TAG, "thumbnail url not null");
+                    // mPosterNetworkImageView.setImageUrl(obj.getString(UtilsString.POSTER_KEY), imageLoader);
+                    Picasso.with(MediaDetailBaseActivity.this).load(thumbUrl).into(mPosterNetworkImageView);
+                }
+                else {
+                    Log.i(TAG, "null thumbnail url");
+                    mPosterNetworkImageView.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.default_thumb));
+                }
+                mTitleTextView.setText(media.getTitle());
+                mYearTextView.setText(media.getYear());
+                mDirectorTextView.setText(media.getDirector());
+                mRatingTextView.setText(media.getRated());
+
+                mDurationTextView.setText(media.getRunTime());
+                mGenreTextView.setText(media.getGenre());
+                mWriterTextView.setText(media.getWriter());
+                mActorsTextView.setText(media.getActors());
+                mPlotTextView.setText(media.getPlot());
+                mLanguageTextView.setText(media.getLanguage());
+                mCountryTextView.setText(media.getCountry());
+                mAwardsTextView.setText(media.getAwards());
+
+            }
+        };
     }
 
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
+        getMediaDetail();
     }
 
     @Override
@@ -185,6 +229,10 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    private void getMediaDetail() {
+        HttpMethods.getInstance().getMovie(ServiceType.MOVIEDETAIL, new ProgressSubscriber(getMediaDetailOnNext, MediaDetailBaseActivity.this), "", "", "", uuid);
     }
 
 }
