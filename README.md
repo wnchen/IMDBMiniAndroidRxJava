@@ -1,4 +1,4 @@
-# IMDBMiniAndroid
+# IMDBMiniAndroidRetrofitRxJava
 
 Android
 
@@ -6,7 +6,9 @@ Fragment
 * MovieFragment
 * TVFragment
 
-Volley: https://developer.android.com/training/volley/index.html
+Retrofit: http://square.github.io/retrofit/
+
+RxJava: https://github.com/ReactiveX/RxAndroid
 
 SQLite database
 
