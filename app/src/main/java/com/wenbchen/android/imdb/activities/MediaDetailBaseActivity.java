@@ -117,6 +117,7 @@ public class MediaDetailBaseActivity extends AppCompatActivity {
         //VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(movieReq, UtilsString.MOVIE_DETAIL_TAG);
 
         getMediaDetailOnNext = new SubscriberOnNextListener<MediaDetailEntity>() {
+
             @Override
             public void onNext(MediaDetailEntity media) {
                 Log.i("TAG", "response is "+ media.toString());
